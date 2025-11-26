@@ -89,8 +89,13 @@ section .task-column {
     flex-direction: column;
     gap: var(--padding-m);
     border-radius: var(--border-radius-m);
+    transition: all 0.2s ease-in-out;
+}
 
-
+section .task-column.hover-over{
+    border: 2px dashed rgba(206, 153, 29, 1);
+    background-color: rgba(228, 228, 228, 0.1);
+    scale: 1.02;
 }
 
 section .task-column .heading{
