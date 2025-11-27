@@ -27,8 +27,16 @@ function addDragEventsOnColumn(column) {
     column.addEventListener("dragleave", (e)=>{
         column.classList.remove("hover-over");
     })
+    column.addEventListener("dragover", (e)=>{
+        e.preventDefault();
+    })
+    column.addEventListener("drop", (e)=>{
+        console.log("dropped in ", column.id);
+    })
+
+
 }
 
 addDragEventsOnColumn(todo);
-addDragEventsOnColumn(inprogress);
+addDragEventsOnColumn(inProgress);
 addDragEventsOnColumn(done);
