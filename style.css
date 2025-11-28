@@ -17,6 +17,8 @@ main {
     height: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
+    z-index: 1; /* keep content above background 3D */
 }
 
 :root {
@@ -45,10 +47,12 @@ main {
 }
 
 body {
-    /* Subtle gradient background */
+    /* Background image with gradient overlays */
     background:
-        radial-gradient(1000px 700px at 10% -10%, #141414 0%, transparent 60%),
-        radial-gradient(1000px 700px at 110% 0%, #1a1a1a 0%, transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+        radial-gradient(1000px 700px at 10% -10%, rgba(255,255,255,0.05), transparent 60%),
+        radial-gradient(1000px 700px at 110% 0%, rgba(255,255,255,0.04), transparent 60%),
+        url('assets/kanban-bg.jpg') center/cover fixed no-repeat,
         var(--bg-color);
     color: var(--primary-text-color);
 }
@@ -58,6 +62,10 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background: rgba(20,20,20,0.35);
+    backdrop-filter: blur(6px) saturate(120%);
+    -webkit-backdrop-filter: blur(6px) saturate(120%);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
 nav .left {
@@ -78,6 +86,11 @@ nav button {
 }
 nav button:hover { filter: brightness(1.1); }
 
+/* Secondary nav button (3D toggle) */
+/* Removed 3D toggle button styles */
+
+/* Removed Three.js hero section */
+
 /* Board Layout */
 section.board {
     padding: var(--section-padding);
@@ -87,7 +100,9 @@ section.board {
 }
 
 section.board .task-column {
-    background-color: var(--task-column-bg-color);
+    background: rgba(43, 43, 43, 0.65);
+    backdrop-filter: blur(10px) saturate(130%);
+    -webkit-backdrop-filter: blur(10px) saturate(130%);
     padding: var(--padding-m);
     display: flex;
     flex-direction: column;
@@ -96,6 +111,7 @@ section.board .task-column {
     transition: all 0.2s ease-in-out;
     border-top: 3px solid var(--col-accent, transparent);
     box-shadow: var(--card-shadow);
+    border: 1px solid rgba(255,255,255,0.06);
 }
 
 section.board .task-column.hover-over {
