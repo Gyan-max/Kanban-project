@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Kanban</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,42 +16,26 @@
             <div class="right"><button>Add new Task</button></div>
         </nav>
         <section class="board">
-            <div id="todo" class="task-column" >
+            <div id="todo" class="task-column">
                 <div class="heading">
                     <div class="left">To Do</div>
-                    <div class="right">Count</div>
+                    <div class="right">0</div>
                 </div>
-                <div draggable="true" class="task">
-                    <h2>Task 1</h2>
-                    <p>Description of Task 1</p>
-                    <button>Edit</button>
-                    <button>Delete</button>
-                        
-                </div>
+                <div class="tasks"></div>
             </div>
             <div id="inprogress" class="task-column">
                 <div class="heading">
                     <div class="left">In Progress</div>
-                    <div class="right">Count</div>
+                    <div class="right">0</div>
                 </div>
-                <div draggable="true" class="task">
-                    <h2>Task 1</h2>
-                    <p>Description of Task 1</p>
-                    <button>Edit</button>
-                    <button>Delete</button>
-                </div>
+                <div class="tasks"></div>
             </div>
             <div id="done" class="task-column">
                 <div class="heading">
                     <div class="left">Done</div>
-                    <div class="right">Count</div>
+                    <div class="right">0</div>
                 </div>
-                <div draggable="true" class="task">
-                    <h2>Task 1</h2>
-                    <p>Description of Task 1</p>
-                    <button>Edit</button>
-                    <button>Delete</button>
-                </div>
+                <div class="tasks"></div>
             </div>
         </section>
     </main>
