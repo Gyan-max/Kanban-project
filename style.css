@@ -94,6 +94,7 @@ section .task-column {
 
 section .task-column.hover-over{
     border: 2px dashed rgba(206, 153, 29, 1);
+    outline-offset: 4px;
     background-color: rgba(228, 228, 228, 0.1);
     scale: 1.02;
 }
@@ -128,3 +129,46 @@ section .task-column .task button{
     cursor: pointer;
 }
 
+.task .dragging{
+    opacity: 0.6;
+    transform: scale(0.98);
+    cursor: grabbing;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.task-column .tasks {
+    min-height: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-m);
+}
+
+.task, .task-column{
+    transition: transform 120ms ease, opacity 120ms ease, background-color 120ms ease;
+}
+
+.task:focus {
+    outline: 2px solid #5b9bd5;
+    outline-offset: 2px;
+}
+
+.task:active {
+    transform: scale(0.98);
+    cursor: grabbing;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .task, .task-column {
+        transition: none;
+    }
+}
+
+@media (forced-colors: active) {
+    .task-column.hover-over {
+        outline: 2px dashed CanvasText;
+    }
+    .task:focus {
+        outline: 2px solid Highlight;
+        /* outline-offset: 2px; */
+    }
+}

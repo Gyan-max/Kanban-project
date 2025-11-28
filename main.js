@@ -1,40 +1,57 @@
 const todo = document.querySelector('#todo');
-const inProgress = document.querySelector('#in-progress');
+const inProgress = document.querySelector('#inprogress');
 const done = document.querySelector('#done');
 
+
+let draggedTask = null;
 
 const tasks = document.querySelectorAll('.task');
 
 tasks.forEach(task => {
-    task.addEventListener("drag", (e) =>{
-        // console.log("dragstart", e);
-        
-    })
-})
+    // Ensure tasks are draggable
+    if (!task.hasAttribute('draggable')) {
+        task.setAttribute('draggable', 'true');
+    }
 
-inprogress.addEventListener("dragenter", (e) =>{
-    inprogress.classList.add("hover-over");
-})
+    task.addEventListener('dragstart', (e) => {
+        draggedTask = task;
+        e.dataTransfer.effectAllowed = 'move';
+        task.classList.add('dragging');
+    });
 
-inprogress.addEventListener("dragleave", (e) =>{
-    inprogress.classList.remove("hover-over");
-})
+    task.addEventListener('dragend', () => {
+        draggedTask = null;
+        task.classList.remove('dragging');
+    });
+});
+
 
 function addDragEventsOnColumn(column) {
-    column.addEventListener("dragenter", (e)=>{
-        column.classList.add("hover-over");
-    })
-    column.addEventListener("dragleave", (e)=>{
-        column.classList.remove("hover-over");
-    })
-    column.addEventListener("dragover", (e)=>{
+    if (!column) return;
+
+    column.addEventListener('dragenter', (e) => {
         e.preventDefault();
-    })
-    column.addEventListener("drop", (e)=>{
-        console.log("dropped in ", column.id);
-    })
+        column.classList.add('hover-over');
+    });
 
+    column.addEventListener('dragleave', () => {
+        column.classList.remove('hover-over');
+    });
 
+    column.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+    });
+
+    column.addEventListener('drop', (e) => {
+        e.preventDefault();
+        column.classList.remove('hover-over');
+
+        const container = column.querySelector('.tasks') || column;
+        if (draggedTask) {
+            container.appendChild(draggedTask);
+        }
+    });
 }
 
 addDragEventsOnColumn(todo);
